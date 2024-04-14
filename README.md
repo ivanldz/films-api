@@ -43,6 +43,9 @@ $ pnpm run start:dev
 
 # production mode
 $ pnpm run start:prod
+
+# or with Dokcer-compose
+$ docker-compose up
 ```
 
 ## Test
