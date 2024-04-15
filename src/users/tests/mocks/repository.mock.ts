@@ -2,8 +2,13 @@ import { Roles } from 'src/auth/enums/roles.enum';
 import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 
+
+export type MockType<T> = {
+  [P in keyof T]?: jest.Mock<{}>;
+};
+
 // Clase mock para el repositorio de User 
-export class UserRepositoryMock extends Repository<User> {
+export class UserRepositoryMock implements MockType<Repository<any>> {
   // Implementacion de los métodos utilizados por UsersService
 
   findOne = jest.fn().mockImplementation((id: number) => {
@@ -38,14 +43,29 @@ export class UserRepositoryMock extends Repository<User> {
     });
   });
 
-  update = jest.fn().mockImplementation((id: number, user: Partial<User>) => {
-    if (id === 1) {
-      return {
+  findAndCount = jest.fn().mockImplementation(() => {
+    return [[
+      {
         id: 1,
-        ...user
-      };
-    } else {
-      return null;
-    }
+        email: 'user1@example.com',
+        hash: "",
+        salt: "",
+        role: Roles.ADMIN,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 2,
+        email: 'user2@example.com',
+        hash: "",
+        salt: "",
+        role: Roles.ADMIN,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ], 2]
+
   });
+
+  remove = jest.fn()
 }

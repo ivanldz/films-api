@@ -1,33 +1,33 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersController } from '../users.controller';
-import { UsersService } from '../users.service';
-import { UserRepositoryMock } from './mocks/repository.mock';
+import { AuthController } from '../auth.controller';
 import { JwtService } from '@nestjs/jwt';
+import { AuthService } from '../auth.service';
+import { UsersService } from 'src/users/users.service';
+import { UserRepositoryMock } from 'src/users/tests/mocks/repository.mock';
 import { ConfigService } from '@nestjs/config';
 
-describe('UsersController', () => {
-  let controller: UsersController;
+describe('AuthController', () => {
+  let controller: AuthController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [UsersController],
+      controllers: [AuthController],
       providers: [
+        AuthService,
         UsersService,
+        JwtService,
+        ConfigService,
         {
           provide: 'UserRepository',
           useClass: UserRepositoryMock
         },
-        JwtService,
-        ConfigService
       ],
     }).compile();
 
-    controller = module.get<UsersController>(UsersController);
+    controller = module.get<AuthController>(AuthController);
   });
-
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-
 });

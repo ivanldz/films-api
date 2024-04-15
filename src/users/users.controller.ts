@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Query } from '@nestjs/common';
+import { Controller, Delete, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { Page } from 'src/global/interfaces/page.interface';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
@@ -12,19 +12,19 @@ export class UsersController {
     @Get()
     @Auth(Roles.ADMIN)
     async findAll(
-        @Query('page') page: number,
-        @Query('pageSize') pageSize: number,
+        @Query('page', ParseIntPipe) page: number,
+        @Query('pageSize', ParseIntPipe) pageSize: number,
     ): Promise<Page<User>> {
         return this.usersService.findAll(page, pageSize)
     }
 
     @Get(":id")
-    async findById(@Param('id') id: number): Promise<User> {
+    async findById(@Param('id', ParseIntPipe) id: number): Promise<User> {
         return this.usersService.getUser(id)
     }
 
     @Delete(":id")
-    async remove(@Param('id') id: number): Promise<User> {
+    async remove(@Param('id', ParseIntPipe) id: number): Promise<User> {
         return this.usersService.remove(id)
     }
 }
