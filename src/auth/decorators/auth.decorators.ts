@@ -4,8 +4,5 @@ import { RoleGuard } from '../guards/role.guard';
 import { SetRole } from './set-role.decorator';
 
 export function Auth(role: string) {
-  return applyDecorators(
-    SetRole(role),
-    UseGuards(AuthGuard, RoleGuard),
-  );
+  return applyDecorators(SetRole(role), UseGuards(AuthGuard, RoleGuard));
 }

@@ -19,7 +19,7 @@ describe('AuthController', () => {
         ConfigService,
         {
           provide: 'UserRepository',
-          useClass: UserRepositoryMock
+          useClass: UserRepositoryMock,
         },
       ],
     }).compile();

@@ -1,27 +1,26 @@
+import { User } from 'src/users/entities/user.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 
-@Entity('users')
-export class User {
+@Entity('films')
+export class Film {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ unique: true })
-  email: string;
+  title: string;
 
-  @Column({ nullable: true, unique: true })
-  hash: string;
+  @Column()
+  description: string;
 
-  @Column({ nullable: true, unique: true })
-  salt: string;
-
-  @Column({ nullable: false, unique: false })
-  role: string;
+  @ManyToOne(() => User)
+  uploadedBy: User;
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

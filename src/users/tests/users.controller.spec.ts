@@ -15,19 +15,17 @@ describe('UsersController', () => {
         UsersService,
         {
           provide: 'UserRepository',
-          useClass: UserRepositoryMock
+          useClass: UserRepositoryMock,
         },
         JwtService,
-        ConfigService
+        ConfigService,
       ],
     }).compile();
 
     controller = module.get<UsersController>(UsersController);
   });
 
-
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-
 });
