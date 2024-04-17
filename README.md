@@ -5,7 +5,7 @@
 
 Este proyecto es la entrega del desafío de conexa.ai, donde desarrollo una API RESTful para la gestión de películas integrada con la API de Star Wars.
 
-## Descripcion general:
+## Descripción general:
 
 - **NestJS y PostgreSQL:** Se utilizó el framework NestJS para construir la API y PostgreSQL como base de datos.
   
