@@ -24,11 +24,11 @@ import { RequestWithUser } from 'src/auth/interfaces/request-user';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-@ApiTags("Films")
+@ApiTags('Films')
 @ApiBearerAuth()
 @Controller('films')
 export class FilmsController {
-  constructor(private readonly filmsService: FilmsService) { }
+  constructor(private readonly filmsService: FilmsService) {}
 
   @Post()
   @Auth(Roles.ADMIN)

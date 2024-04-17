@@ -14,4 +14,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   providers: [SeedService, UsersService, FilmsService, StarWarsRepository],
   controllers: [SeedController],
 })
-export class SeedModule { }
+export class SeedModule {}

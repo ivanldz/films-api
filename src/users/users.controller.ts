@@ -14,7 +14,7 @@ import { Roles } from 'src/auth/enums/roles.enum';
 import { UserList } from './interfaces/user-list.interface';
 import { User } from './entities/user.entity';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-@ApiTags("Users")
+@ApiTags('Users')
 @ApiBearerAuth()
 @Controller('users')
 export class UsersController {
