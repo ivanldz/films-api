@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { FilmsModule } from './films/films.module';
 import { Film } from './films/entities/film.entity';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { Film } from './films/entities/film.entity';
     AuthModule,
     UsersModule,
     FilmsModule,
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

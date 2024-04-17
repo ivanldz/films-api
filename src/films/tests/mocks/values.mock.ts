@@ -6,7 +6,6 @@ export const userMock: User = {
   id: 1,
   email: 'admin@admin.com',
   hash: 'hash',
-  salt: 'salt',
   role: Roles.ADMIN,
   createdAt: new Date(),
   updatedAt: new Date(),

@@ -17,9 +17,6 @@ export class User {
   @Column({ nullable: true, unique: true })
   hash: string;
 
-  @Column({ nullable: true, unique: true })
-  salt: string;
-
   @Column({ nullable: false, unique: false })
   role: string;
 

@@ -37,7 +37,6 @@ describe('UsersService', () => {
 
       expect(newUser).toBeDefined();
       expect(newUser.hash).toBeDefined();
-      expect(newUser.salt).toBeDefined();
     });
 
     it('fails if the user already exists', async () => {
@@ -111,7 +110,6 @@ describe('UsersService', () => {
         'Page size must be between 0 and 20',
       );
     });
-
   });
   describe('findOneBy', () => {
     it('should return the user when a valid filter is provided', async () => {

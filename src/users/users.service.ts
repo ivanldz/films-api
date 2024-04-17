@@ -16,7 +16,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async create(email: string, password: string, role: Roles): Promise<User> {
     const exist = await this.findOneBy({ email });
@@ -30,7 +30,6 @@ export class UsersService {
       email: email,
       role: role,
       hash: hashedPassword,
-      salt: salt,
     });
 
     return user;
@@ -41,7 +40,12 @@ export class UsersService {
   }
 
   async getUser(id: number): Promise<User> {
-    return this.findOneBy({ id: id });
+    const user = await this.findOneBy({ id: id });
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
+
+    return user
   }
 
   async findAll(

@@ -13,7 +13,9 @@ import { Auth } from 'src/auth/decorators/auth.decorators';
 import { Roles } from 'src/auth/enums/roles.enum';
 import { UserList } from './interfaces/user-list.interface';
 import { User } from './entities/user.entity';
-
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+@ApiTags("Users")
+@ApiBearerAuth()
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -28,16 +30,19 @@ export class UsersController {
   }
 
   @Get(':id')
+  @Auth(Roles.ADMIN)
   async findById(@Param('id', ParseIntPipe) id: number): Promise<User> {
     return this.usersService.getUser(id);
   }
 
   @Delete(':id')
+  @Auth(Roles.ADMIN)
   async remove(@Param('id', ParseIntPipe) id: number): Promise<User> {
     return this.usersService.remove(id);
   }
 
   @Patch(':id/set-admin')
+  @Auth(Roles.ADMIN)
   async setAdmin(@Param('id', ParseIntPipe) id: number): Promise<User> {
     return this.usersService.setAdmin(id);
   }

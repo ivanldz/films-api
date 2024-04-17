@@ -14,10 +14,11 @@ import { Login } from './dto/login.dto';
 import { SignUp } from './dto/signup.dto';
 import { RequestWithUser } from './interfaces/request-user';
 import { AuthGuard } from './guards/auth.guard';
-
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Post('login')
   @UsePipes(ZodValidationPipe)
@@ -32,6 +33,7 @@ export class AuthController {
   }
 
   @Get('me')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   async profile(@Request() req: RequestWithUser): Promise<SuccessfulLogin> {
     return this.authService.getProfile(req.user.email);
