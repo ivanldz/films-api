@@ -1,76 +1,69 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Films Api 🚀
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+¡Bienvenido a Films API!
 
-## Description
+Este proyecto es la entrega del desafío de conexa.ai, donde desarrollo una API RESTful para la gestión de películas integrada con la API de Star Wars.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Descripcion general:
 
-## Installation
+- **NestJS y PostgreSQL:** Se utilizó el framework NestJS para construir la API y PostgreSQL como base de datos.
+  
+- **Variables de entorno:** La configuración de la API se gestiona mediante archivos de variables de entorno. Existen dos archivos: `.env.prod` para entorno productivo y `.env.dev` para entorno de desarrollo. La selección del archivo a utilizar depende de la variable de entorno `NODE_ENV`, por defecto funciona con el archivo destinado para desarrollo.
+
+- **Docker:** Existe soporte para Docker tanto en entorno de producción como de desarrollo. Estaran presentes un `Dockerfile` para producción y un `Dockerfile.dev` para desarrollo.
+
+- **Docker Compose:** Para facilitar el desarrollo, incluí un archivo `docker-compose` que utiliza el `Dockerfile.dev` y levanta una instancia de la base de datos PostgreSQL.
+
+- **Documentación Swagger:** Integré documentación Swagger para facilitar el uso y comprensión de la API. Puedes acceder a la documentación en `/docs`.
+
+## Uso:
+
+### Opción 1: Docker Compose
+
+Se recomienda el uso de `docker-compose` para simplificar la configuración:
 
 ```bash
-$ pnpm install
+docker-compose up
 ```
+Este comando iniciará todos los servicios definidos en el archivo docker-compose.yml.
 
-## Running the app
+### Opción 2: Cargar Credenciales de PostgreSQL
+Si prefieres cargar las credenciales de una base de datos PostgreSQL en un archivo .env.prod, puedes ejecutar:
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
-
-# or with Dokcer-compose
-$ docker-compose up
+pnpm run start:dev
 ```
 
-## Test
+Esto iniciará la aplicación utilizando las credenciales definidas en el archivo .env.prod.
+
+### Opción 3: Iniciar Solo la Base de Datos
+También puedes instanciar solo la base de datos utilizando docker-compose:
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+docker-compose up db
 ```
 
-## Support
+Esto iniciará únicamente el servicio de la base de datos PostgreSQL definido en tu archivo docker-compose.yml. Para levantar le proyecto en otra terminal siga la opción 2
+## API Docs
+Es posible acceder al panel de Swagger para probar fácilmente todos los endpoints visitando http://localhost:3000/docs.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Acceso
+Dado que la mayoría de los endpoints están protegidos inicialmente, primero es necesario ejecutar el endpoint /api/seed. Aunque en una aplicación real no tendría sentido por razones de seguridad, este endpoint genera un usuario administrador y devuelve sus credenciales. Luego debera utilizar estas credenciales en la sección de inicio de sesión (login) y para despues cargar el token en el input que aparecerá al hacer clic en el botón `Authorize 🔒` en la parte superior del sitio.
+## Testing 🧪
 
-## Stay in touch
+La api cuenta con pruebas unitarias independientes en cada modulo. Para ejecutarla puede usar el comando
+```bash
+pnpm run test
+```
+Tambien puede ver el coverage con
+```
+pnpm run test:cov
+``` 
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Author
 
-## License
+Gracias por ver!
 
-Nest is [MIT licensed](LICENSE).
+- [@ivanldz](https://www.github.com/ivanldz)
+

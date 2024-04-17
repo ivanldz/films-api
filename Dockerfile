@@ -24,4 +24,4 @@ COPY --from=build /app/dist/  ./dist/
 COPY --from=build /app/.env.prod  .
 COPY --from=build /app/node_modules ./node_modules
 
-CMD [ "node", "--max-old-space-size=200", "dist/main.js" ]
+CMD [ "node", "dist/main.js" ]
