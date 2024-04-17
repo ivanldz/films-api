@@ -70,8 +70,14 @@ describe('UsersService', () => {
 
   describe('getUser', () => {
     it('Get the user', async () => {
+      jest.spyOn(userRepository, 'findOneBy').mockResolvedValue({ id: 1 });
       const user = await service.getUser(1);
       expect(user).toBeDefined();
+    });
+
+    it('Get the user', async () => {
+      jest.spyOn(userRepository, 'findOneBy').mockResolvedValue(null);
+      await expect(service.getUser(1)).rejects.toThrow("user not found");
     });
   });
 
