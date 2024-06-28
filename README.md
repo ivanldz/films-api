@@ -3,7 +3,6 @@
 
 ¡Bienvenido a Films API!
 
-Este proyecto es la entrega del desafío de conexa.ai, donde desarrollo una API RESTful para la gestión de películas integrada con la API de Star Wars.
 
 ## Descripción general:
 
